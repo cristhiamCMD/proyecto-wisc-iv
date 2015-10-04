@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_diary"
+            android:icon="@mipmap/clock"
+            android:title="Iniciar Sesion" />
+        <item
+            android:id="@+id/nav_explore"
+            android:icon="@mipmap/compass"
+            android:title="Registrate" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@mipmap/map"
+            android:title="Nuevo Test" />
+        <item
+            android:id="@+id/nav_social"
+            android:icon="@mipmap/forum"
+            android:title="Continuar Test" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/information"
+            android:title="Test Concluidos" />
+
+    </group>
+
+
+</menu>
