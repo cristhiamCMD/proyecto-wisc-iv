@@ -1,6 +1,5 @@
 package code.cmd.test.wisc.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,10 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.nispok.snackbar.Snackbar;
 import com.parse.ParseUser;
 
 import code.cmd.test.wisc.R;
+import code.cmd.test.wisc.ui.fragment.NewPatientFragment;
 import code.cmd.test.wisc.ui.fragment.RegisterPsychologyFrame;
 import code.cmd.test.wisc.ui.fragment.UserLoginFragment;
 
@@ -72,7 +71,22 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tvLogin.setText("Doctora : " + currentUser.getString("firstName") + " " + currentUser.getString("lastName"));
             }
+            currentUser.put("online",true);
+            currentUser.saveInBackground();
             tvEspecialidad.setText(currentUser.getString("specialty"));
+        } else {
+            // show the signup or login screen
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            // do stuff with the use
+            currentUser.put("online", false);
+            currentUser.saveInBackground();
         } else {
             // show the signup or login screen
         }
@@ -129,13 +143,9 @@ public class MainActivity extends AppCompatActivity {
 //                        if (PreferencesHelper.getBoolean(PreferencesHelper.FIRST_SYNC, MainActivity.this)) {
                         switch (menuItem.getItemId()) {
                             case R.id.nav_map:
-//                                    PreferencesHelper.putInt(PreferencesHelper.MAP, 1, MainActivity.this);
-//                                    mDrawerLayout.closeDrawers();
-//                                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
-//                                    startActivity(intent);
-//                                getSupportActionBar().setTitle(R.string.diary_title);
-//                                changeFrameContent(new RegisterPsychologyFrame());
-                                return true;
+                                getSupportActionBar().setTitle("Nuevo Test");
+                                changeFrameContent(new NewPatientFragment());
+                                break;
                             case R.id.nav_diary:
                                 getSupportActionBar().setTitle("Iniciar Sesion");
                                 changeFrameContent(new UserLoginFragment());
@@ -153,15 +163,21 @@ public class MainActivity extends AppCompatActivity {
 //                                    changeFrameContent(new AboutFragment());
                                 break;
                             case R.id.cerrar_sesion:
-                                ParseUser.logOut();
                                 ParseUser currentUser = ParseUser.getCurrentUser();
+                                if (currentUser != null) {
+                                    // do stuff with the use
+                                    currentUser.put("online", false);
+                                    currentUser.saveInBackground();
+                                } else {
+                                    // show the signup or login screen
+                                }
+                                ParseUser.logOut();
+                                currentUser = ParseUser.getCurrentUser();
                                 tvEspecialidad.setText("");
                                 tvLogin.setText("");
                                 break;
                         }
                         menuItem.setChecked(true);
-
-//                        }
                         mDrawerLayout.closeDrawers();
                         return true;
                     }

@@ -47,4 +47,5 @@
 
     <string name="sexM">Masculino</string>
     <string name="sexF">Femenino</string>
+    <string name="title_activity_main_patient">MainPatientActivity</string>
 </resources>

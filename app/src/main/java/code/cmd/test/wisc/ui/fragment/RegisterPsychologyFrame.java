@@ -170,9 +170,9 @@ public class RegisterPsychologyFrame extends Fragment implements View.OnClickLis
                 psychologist.setSpecialty(tilSpecialtytName.getEditText().getText().toString());
                 psychologist.setImage(path);
                 if (rbSexMasculino.isChecked()) {
-                    psychologist.setSex("" + R.string.sexM);
+                    psychologist.setSex("Masculino");
                 } else {
-                    psychologist.setSex("" + R.string.sexF);
+                    psychologist.setSex("Femenino");
                 }
 
                 if ((tilPassword.getEditText().getText().toString()).equals(tilPasswordRepeat.getEditText().getText().toString())) {

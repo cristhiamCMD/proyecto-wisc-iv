@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Button;
 
 import code.cmd.test.wisc.R;
 import code.cmd.test.wisc.helper.ParseHelper;
+import code.cmd.test.wisc.uipatient.MainPatientActivity;
 
 public class MainModeSelect extends AppCompatActivity {
     Button btnIniciarPsicologo;
@@ -42,7 +42,8 @@ public class MainModeSelect extends AppCompatActivity {
         btnIniciarNino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent I = new Intent(getApplicationContext(), MainPatientActivity.class);
+                startActivity(I);
             }
         });
     }

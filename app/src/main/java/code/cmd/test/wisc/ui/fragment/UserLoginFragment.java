@@ -3,27 +3,23 @@ package code.cmd.test.wisc.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import code.cmd.test.wisc.R;
-import code.cmd.test.wisc.helper.ParseHelper;
-import code.cmd.test.wisc.model.ActiveUser;
-import code.cmd.test.wisc.model.Psychologist;
-import code.cmd.test.wisc.model.dao.ActiveUserDao;
-import code.cmd.test.wisc.model.dao.PsychologistDao;
-import code.cmd.test.wisc.ui.MainActivity;
-
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import code.cmd.test.wisc.R;
+import code.cmd.test.wisc.model.ActiveUser;
+import code.cmd.test.wisc.model.dao.ActiveUserDao;
+import code.cmd.test.wisc.model.dao.PsychologistDao;
+import code.cmd.test.wisc.ui.MainActivity;
 
 public class UserLoginFragment extends Fragment implements View.OnClickListener {
 
