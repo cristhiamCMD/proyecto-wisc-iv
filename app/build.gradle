@@ -36,4 +36,5 @@ dependencies {
 
     compile 'com.github.rey5137:material:1.2.1'
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.nispok:snackbar:2.11.+'
 }

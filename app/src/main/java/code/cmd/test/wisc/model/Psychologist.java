@@ -7,7 +7,7 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Psychologist {
 
-    @DatabaseField(columnName = "psychologistId", generatedId = true)
+    @DatabaseField(columnName = "psychologistId", generatedId = true, id = true)
     private int psychologistId;
 
     @DatabaseField(columnName = "firstName")
@@ -28,6 +28,16 @@ public class Psychologist {
     @DatabaseField(columnName = "specialty")
     private String specialty;
 
+    @DatabaseField(columnName = "image")
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getPassword() {
         return password;

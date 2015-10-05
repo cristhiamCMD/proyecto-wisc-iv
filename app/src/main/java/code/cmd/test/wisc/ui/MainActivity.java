@@ -1,5 +1,6 @@
 package code.cmd.test.wisc.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,23 +10,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.nispok.snackbar.Snackbar;
+import com.parse.ParseUser;
+
 import code.cmd.test.wisc.R;
-import code.cmd.test.wisc.helper.DataBaseHelper;
-import code.cmd.test.wisc.helper.ParseHelper;
-import code.cmd.test.wisc.model.ActiveUser;
-import code.cmd.test.wisc.model.dao.ActiveUserDao;
 import code.cmd.test.wisc.ui.fragment.RegisterPsychologyFrame;
 import code.cmd.test.wisc.ui.fragment.UserLoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvLogin;
+    TextView tvLogin, tvEspecialidad;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -47,26 +46,37 @@ public class MainActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
-        tvLogin=(TextView)findViewById(R.id.tvNameLogin);
+        tvLogin = (TextView) findViewById(R.id.tvNameLogin);
+        tvEspecialidad = (TextView) findViewById(R.id.tvNameEspecialidad);
 
-        ActiveUserDao activeUserDao=new ActiveUserDao(this.getApplicationContext());
-        ActiveUser activeUser=activeUserDao.BuscarPorId();
-        if(activeUser!=null)
-        {
-            tvLogin.setText("Doctor");
-            Log.d(this.getLocalClassName(), "IdUser"+activeUser.get_id());
-            Log.d(this.getLocalClassName(), "UserName"+activeUser.getUserName());
-            Log.d(this.getLocalClassName(), "UserPass"+activeUser.getPassword());
-            Log.d(this.getLocalClassName(),"verdade");
+//        ActiveUserDao activeUserDao=new ActiveUserDao(this.getApplicationContext());
+//        ActiveUser activeUser=activeUserDao.BuscarPorId();
+//        if(activeUser!=null)
+//        {
+//            tvLogin.setText("Doctor : "+activeUser.getUserName());
+//            Log.d(this.getLocalClassName(), "IdUser"+activeUser.get_id());
+//            Log.d(this.getLocalClassName(), "UserName"+activeUser.getUserName());
+//            Log.d(this.getLocalClassName(), "UserPass"+activeUser.getPassword());
+//            Log.d(this.getLocalClassName(),"verdade");
+//        }
+//        else
+//        {
+//         Log.d(this.getLocalClassName(),"falseete");
+//        }
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            // do stuff with the user
+            if (currentUser.getString("sex") == "Masculino") {
+                tvLogin.setText("Doctor : " + currentUser.getString("firstName") + " " + currentUser.getString("lastName"));
+            } else {
+                tvLogin.setText("Doctora : " + currentUser.getString("firstName") + " " + currentUser.getString("lastName"));
+            }
+            tvEspecialidad.setText(currentUser.getString("specialty"));
+        } else {
+            // show the signup or login screen
         }
-        else
-        {
-         Log.d(this.getLocalClassName(),"falseete");
-        }
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,11 +152,17 @@ public class MainActivity extends AppCompatActivity {
                                 getSupportActionBar().setTitle(R.string.about_title);
 //                                    changeFrameContent(new AboutFragment());
                                 break;
+                            case R.id.cerrar_sesion:
+                                ParseUser.logOut();
+                                ParseUser currentUser = ParseUser.getCurrentUser();
+                                tvEspecialidad.setText("");
+                                tvLogin.setText("");
+                                break;
                         }
                         menuItem.setChecked(true);
 
 //                        }
-//                        mDrawerLayout.closeDrawers();
+                        mDrawerLayout.closeDrawers();
                         return true;
                     }
                 });

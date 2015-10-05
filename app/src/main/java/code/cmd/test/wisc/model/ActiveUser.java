@@ -15,6 +15,27 @@ public class ActiveUser {
     @DatabaseField(columnName = "password")
     private String password;
 
+    @DatabaseField(columnName = "image")
+    private String image;
+
+    @DatabaseField(columnName = "especialidad")
+    private String especialidad;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
 
     public int get_id() {
         return _id;

@@ -25,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/accent"/>
+        android:textColor="@color/primary_text"/>
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvNameEspecialidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/accent"/>
+        android:textColor="@color/primary_text"/>
 
 </LinearLayout>
